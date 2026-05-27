@@ -8,7 +8,8 @@ class Cliente(db.Model):
     telefono = db.Column(db.String(20), nullable=False)
     
     # Relación: un Cliente tiene muchos Pedidos
-    pedidos = db.relationship('Pedido', backref='cliente', lazy=True)
+    pedidos = db.relationship('Pedido', backref='cliente', lazy=True, cascade="all, delete-orphan")
+
     
     def __repr__(self):
         return f"Cliente: {self.nombre} - Tel: {self.telefono}"
