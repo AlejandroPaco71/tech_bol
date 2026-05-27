@@ -34,7 +34,7 @@
             <tr>
                 <td>{{ loop.index }}</td>
                 <td>{{ pedido.id }}</td>
-                <td>{{ pedido.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+                <td>{{ pedido.fecha.strftime('%d/%m/%Y') }}</td>
                 <td>{{ pedido.cliente.nombre }}</td>
                 <td>{{ pedido.producto.nombre }}</td>
                 <td>{{ "%.2f"|format(pedido.monto) }}</td>

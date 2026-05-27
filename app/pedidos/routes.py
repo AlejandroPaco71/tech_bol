@@ -1,4 +1,5 @@
 from flask import request, render_template, redirect, url_for, Blueprint, flash
+from datetime import datetime
 from app.app import db
 from app.pedidos.models import Pedido
 from app.clientes.models import Cliente
@@ -21,7 +22,9 @@ def create():
         cliente_id = int(request.form.get('cliente_id'))
         producto_id = int(request.form.get('producto_id'))
         monto = float(request.form.get('monto'))
-        pedido = Pedido(cliente_id=cliente_id, producto_id=producto_id, monto=monto)
+        fecha_str = request.form['fecha']
+        fecha = datetime.strptime(fecha_str, '%Y-%m-%d')
+        pedido = Pedido(cliente_id=cliente_id, producto_id=producto_id, monto=monto, fecha=fecha)
         db.session.add(pedido)
         db.session.commit()
         flash('Pedido registrado exitosamente', 'success')
